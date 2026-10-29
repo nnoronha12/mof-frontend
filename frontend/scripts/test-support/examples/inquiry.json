@@ -1,0 +1,43 @@
+{
+  "output": "Grounded answer [1].\n\n[UAT fixture — Page 2](/inquiry-document/77777777-7777-4777-8777-777777777777?page=2)",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": null,
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "reference.1",
+        "label": "UAT fixture — Page 2",
+        "actionButtonType": "reference",
+        "action": "reference.open",
+        "payload": {
+          "documentId": "77777777-7777-4777-8777-777777777777",
+          "page": 2,
+          "title": "UAT fixture",
+          "href": "/inquiry-document/77777777-7777-4777-8777-777777777777?page=2",
+          "citation": {
+            "id": "1",
+            "label": "UAT fixture",
+            "sourceType": "knowledge-base",
+            "documentId": "77777777-7777-4777-8777-777777777777",
+            "url": "/inquiry-document/77777777-7777-4777-8777-777777777777?page=2",
+            "page": 2,
+            "quote": null
+          }
+        }
+      },
+      {
+        "id": "message.copy",
+        "label": "Copy answer",
+        "actionButtonType": "copy",
+        "action": "message.copy",
+        "payload": {}
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+# Used when Docker builds from the repository root (Docker/Nginx).
+# Only the frontend is sent; secrets in .env, the workflows and local tools stay out.
+*
+!frontend
+frontend/node_modules
+frontend/dist
+frontend/dist-slides
+**/.env
+**/.env.*
+**/.git
+**/.DS_Store

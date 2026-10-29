@@ -1,0 +1,14 @@
+{
+  "output": "",
+  "sessionDetails": {
+    "messageId": null,
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": null,
+    "aiMessageId": null,
+    "weaveChatid": null,
+    "chatLock": true
+  },
+  "actionButtons": {
+    "buttons": []
+  }
+}

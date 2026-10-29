@@ -1,0 +1,96 @@
+{
+  "output": "Budget and actual by month.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "chart.open",
+        "label": "View chart",
+        "actionButtonType": "view",
+        "action": "chart.open",
+        "payload": {
+          "chartId": "chart-102",
+          "chart": {
+            "id": "chart-102",
+            "chartType": 13,
+            "altType": [
+              1,
+              12,
+              13
+            ],
+            "chartData": {
+              "title": "Budget vs actual",
+              "xField": "month",
+              "series": [
+                {
+                  "name": "Budget",
+                  "valueYField": "budget",
+                  "categoryXField": "month",
+                  "unit": "AED"
+                },
+                {
+                  "name": "Actual",
+                  "valueYField": "actual",
+                  "categoryXField": "month",
+                  "unit": "AED"
+                }
+              ],
+              "data": [
+                {
+                  "month": "Jan",
+                  "budget": 120,
+                  "actual": 95
+                },
+                {
+                  "month": "Feb",
+                  "budget": 140,
+                  "actual": 130
+                }
+              ],
+              "xAxisTitle": "Month",
+              "yAxisTitle": "Amount",
+              "unit": "AED"
+            }
+          }
+        }
+      },
+      {
+        "id": "chart.line",
+        "label": "Line",
+        "actionButtonType": "chartType",
+        "action": "chart.setType",
+        "payload": {
+          "chartId": "chart-102",
+          "chartType": 1
+        }
+      },
+      {
+        "id": "chart.bar",
+        "label": "Bar",
+        "actionButtonType": "chartType",
+        "action": "chart.setType",
+        "payload": {
+          "chartId": "chart-102",
+          "chartType": 12
+        }
+      },
+      {
+        "id": "chart.column",
+        "label": "Column",
+        "actionButtonType": "chartType",
+        "action": "chart.setType",
+        "payload": {
+          "chartId": "chart-102",
+          "chartType": 13
+        }
+      }
+    ]
+  }
+}

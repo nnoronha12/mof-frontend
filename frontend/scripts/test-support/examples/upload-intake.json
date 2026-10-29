@@ -1,0 +1,37 @@
+{
+  "output": "Upload your scope and proposals.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "proposal.scope",
+        "label": "Upload scope",
+        "actionButtonType": "upload",
+        "action": "chat.uploadFiles",
+        "payload": {
+          "slot": "scope"
+        },
+        "singleUpload": true,
+        "mimetype": ".pdf,.docx,.txt"
+      },
+      {
+        "id": "proposal.proposals",
+        "label": "Upload proposals",
+        "actionButtonType": "upload",
+        "action": "chat.uploadFiles",
+        "payload": {
+          "slot": "proposals"
+        },
+        "singleUpload": false,
+        "mimetype": ".pdf,.docx,.txt"
+      }
+    ]
+  }
+}

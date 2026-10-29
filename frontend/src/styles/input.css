@@ -1,0 +1,145 @@
+/* Import Glassmorphism Styles */
+@import './glassmorphism.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .chat-input {
+    @apply w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent;
+  }
+  
+  .chat-button {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .chat-message {
+    @apply p-4 rounded-lg mb-4 max-w-[80%];
+  }
+
+  .user-message {
+    @apply ml-auto;
+  }
+
+  .ai-message {
+    @apply mr-auto;
+  }
+}
+
+@layer utilities {
+  .gradient-bg {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F7F7F7 100%);
+  }
+  .gradient-divider {
+    background: linear-gradient(to right, #C6A75D 0%, rgba(255, 255, 255, 0) 100%);
+  }
+  .gold-accent {
+    color: #C6A75D;
+  }
+  .gold-bg {
+    background-color: #C6A75D;
+  }
+  .gold-border {
+    border-color: #C6A75D;
+  }
+}
+
+/* Custom animation for gradient text */
+@keyframes animateGradientText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-text {
+  background-image: linear-gradient(to right, #C6A75D, #E5D4A6, #C6A75D); 
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: animateGradientText 1.5s linear infinite;
+}
+
+/* Temporary dark mode (demo shell toggle). Remove when a real theme lands. */
+html.temp-dark {
+  color-scheme: dark;
+}
+
+html.temp-dark body {
+  background-color: #0f1115;
+  color: #e8eaed;
+}
+
+html.temp-dark .bg-white,
+html.temp-dark .bg-white\/80,
+html.temp-dark .bg-white\/85 {
+  background-color: #1a1d24 !important;
+}
+
+html.temp-dark .bg-gray-50,
+html.temp-dark .hover\:bg-gray-50:hover {
+  background-color: #22262e !important;
+}
+
+html.temp-dark .bg-gray-100,
+html.temp-dark .hover\:bg-gray-100:hover,
+html.temp-dark .h-screen.bg-gray-100 {
+  background-color: #12151a !important;
+}
+
+html.temp-dark .text-gray-900,
+html.temp-dark .text-gray-800,
+html.temp-dark .text-\[\#344054\],
+html.temp-dark .text-\[\#101828\] {
+  color: #f2f4f7 !important;
+}
+
+html.temp-dark .text-gray-700,
+html.temp-dark .text-gray-600,
+html.temp-dark .text-\[\#667085\],
+html.temp-dark .text-\[\#475467\] {
+  color: #c5cad3 !important;
+}
+
+html.temp-dark .text-gray-500,
+html.temp-dark .placeholder-gray-500::placeholder {
+  color: #98a2b3 !important;
+}
+
+html.temp-dark .border-\[\#EAECF0\],
+html.temp-dark .border-gray-200,
+html.temp-dark .border-gray-300 {
+  border-color: #2f3540 !important;
+}
+
+html.temp-dark .gradient-bg {
+  background: linear-gradient(180deg, #1a1d24 0%, #12151a 100%);
+}
+
+html.temp-dark .glass-ultra,
+html.temp-dark .glass-strong,
+html.temp-dark .glass-medium,
+html.temp-dark .glass-light {
+  background: rgba(26, 29, 36, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.temp-dark input,
+html.temp-dark textarea,
+html.temp-dark select {
+  background-color: #22262e;
+  color: #f2f4f7;
+  border-color: #2f3540;
+}
+
+html.temp-dark img,
+html.temp-dark video,
+html.temp-dark iframe {
+  filter: none;
+}
+
+html.temp-dark [role='switch'] span.bg-white {
+  background-color: #ffffff !important;
+}

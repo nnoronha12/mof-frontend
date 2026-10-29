@@ -1,0 +1,45 @@
+{
+  "output": "Project Falcon 42 is named in the fixture [1].",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "chat.follow-up.1",
+        "label": "Explain more",
+        "actionButtonType": "prompt",
+        "action": "chat.sendMessage",
+        "payload": {
+          "text": "Explain more"
+        }
+      },
+      {
+        "id": "reference.1",
+        "label": "UAT fixture — Page 1",
+        "actionButtonType": "reference",
+        "action": "reference.open",
+        "payload": {
+          "documentId": "77777777-7777-4777-8777-777777777777",
+          "page": 1,
+          "title": "UAT fixture",
+          "href": "/chat-document/77777777-7777-4777-8777-777777777777?page=1",
+          "citation": {
+            "id": "1",
+            "label": "UAT fixture",
+            "sourceType": "uploaded-document",
+            "documentId": "77777777-7777-4777-8777-777777777777",
+            "url": "/chat-document/77777777-7777-4777-8777-777777777777?page=1",
+            "page": 1,
+            "quote": "Project Falcon 42"
+          }
+        }
+      }
+    ]
+  }
+}

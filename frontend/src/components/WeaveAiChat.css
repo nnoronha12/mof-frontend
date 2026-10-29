@@ -1,0 +1,621 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+.weave-ai-chat {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: white;
+  position: relative;
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Font Weight Utilities */
+.weave-ai-chat h1,
+.weave-ai-chat .main-title {
+  font-weight: 800; /* Extra Bold for main titles like "Media Hub" */
+}
+
+.weave-ai-chat h2,
+.weave-ai-chat .section-header {
+  font-weight: 700; /* Bold for section headers like "Ministry News" */
+}
+
+.weave-ai-chat h3,
+.weave-ai-chat .card-title {
+  font-weight: 600; /* Semi-bold for card titles */
+}
+
+.weave-ai-chat p,
+.weave-ai-chat .body-text {
+  font-weight: 400; /* Regular for body text */
+}
+
+.weave-ai-chat .light-text {
+  font-weight: 300; /* Light for subtle text */
+}
+
+.gradient-bg {
+  background: #C6A75D;
+}
+
+.gradient-divider {
+  border-bottom: 1px solid rgba(198, 167, 93, 0.2);
+}
+
+.gradient-divider::after {
+  content: '';
+  height: 2px;
+  background: linear-gradient(90deg, #C6A75D 0%, rgba(198, 167, 93, 0) 100%);
+  opacity: 0.5;
+  width: 50%;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ========== Chat Lock Animations ========== */
+
+/* Base container for chat lock indicator */
+.chat-lock-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(198, 167, 93, 0.08) 0%, rgba(198, 167, 93, 0.02) 100%);
+  backdrop-filter: blur(4px);
+}
+
+/* Animation icon container */
+.chat-lock-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Default spinning animation */
+.chat-lock-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(198, 167, 93, 0.2);
+  border-top-color: #C6A75D;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Reading Documents Animation - Book/Pages flipping */
+.chat-lock-reading {
+  position: relative;
+  width: 24px;
+  height: 20px;
+}
+
+.chat-lock-reading::before,
+.chat-lock-reading::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  background: linear-gradient(135deg, #C6A75D 0%, #B8985A 100%);
+  border-radius: 2px;
+  top: 2px;
+}
+
+.chat-lock-reading::before {
+  left: 2px;
+  transform-origin: right center;
+  animation: pageFlipLeft 1.2s ease-in-out infinite;
+}
+
+.chat-lock-reading::after {
+  right: 2px;
+  transform-origin: left center;
+  animation: pageFlipRight 1.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+@keyframes pageFlipLeft {
+  0%, 100% { transform: rotateY(0deg); opacity: 1; }
+  50% { transform: rotateY(-30deg); opacity: 0.7; }
+}
+
+@keyframes pageFlipRight {
+  0%, 100% { transform: rotateY(0deg); opacity: 1; }
+  50% { transform: rotateY(30deg); opacity: 0.7; }
+}
+
+/* Web Search Animation - Radar/Globe scanning */
+.chat-lock-search {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.chat-lock-search::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C6A75D;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+}
+
+.chat-lock-search::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(198, 167, 93, 0.6) 60deg, transparent 120deg);
+  animation: radar 1.5s linear infinite;
+}
+
+@keyframes radar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Preparing Response Animation - Typing dots */
+.chat-lock-preparing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+}
+
+.chat-lock-preparing span {
+  width: 6px;
+  height: 6px;
+  background: #C6A75D;
+  border-radius: 50%;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.chat-lock-preparing span:nth-child(1) { animation-delay: 0s; }
+.chat-lock-preparing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-lock-preparing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+/* Reading Data Animation - Data stream/bars */
+.chat-lock-data {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+  padding: 2px;
+}
+
+.chat-lock-data span {
+  width: 4px;
+  background: linear-gradient(to top, #C6A75D, #E5D4A6);
+  border-radius: 2px;
+  animation: dataBar 1s ease-in-out infinite;
+}
+
+.chat-lock-data span:nth-child(1) { animation-delay: 0s; }
+.chat-lock-data span:nth-child(2) { animation-delay: 0.1s; }
+.chat-lock-data span:nth-child(3) { animation-delay: 0.2s; }
+.chat-lock-data span:nth-child(4) { animation-delay: 0.3s; }
+.chat-lock-data span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes dataBar {
+  0%, 100% { height: 6px; }
+  50% { height: 18px; }
+}
+
+/* Analyzing Animation - Pulse rings */
+.chat-lock-analyzing {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-lock-analyzing::before,
+.chat-lock-analyzing::after {
+  content: '';
+  position: absolute;
+  border: 2px solid #C6A75D;
+  border-radius: 50%;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+.chat-lock-analyzing::before {
+  width: 12px;
+  height: 12px;
+}
+
+.chat-lock-analyzing::after {
+  width: 12px;
+  height: 12px;
+  animation-delay: 0.5s;
+}
+
+.chat-lock-analyzing span {
+  width: 8px;
+  height: 8px;
+  background: #C6A75D;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Processing Animation - Gear rotation */
+.chat-lock-processing {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.chat-lock-processing::before {
+  content: '⚙';
+  position: absolute;
+  font-size: 20px;
+  color: #C6A75D;
+  animation: gearSpin 2s linear infinite;
+  top: 2px;
+  left: 2px;
+}
+
+@keyframes gearSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Thinking Animation - Brain pulse */
+.chat-lock-thinking {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-lock-thinking::before {
+  content: '💭';
+  font-size: 18px;
+  animation: think 2s ease-in-out infinite;
+}
+
+@keyframes think {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* Chat lock message text animation */
+.chat-lock-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #B8985A;
+  animation: textFade 2s ease-in-out infinite;
+}
+
+@keyframes textFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ========== Action Button Animations ========== */
+
+/* Prompt button base styles */
+.action-button-prompt {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 251, 240, 1) 100%);
+}
+
+/* Shimmer effect on hover */
+.action-button-prompt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 167, 93, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s ease;
+}
+
+.action-button-prompt:hover::before {
+  left: 100%;
+}
+
+/* Subtle glow effect */
+.action-button-prompt::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(198, 167, 93, 0.3), rgba(229, 212, 166, 0.3));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.action-button-prompt:hover::after {
+  opacity: 1;
+}
+
+/* Button hover state */
+.action-button-prompt:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 12px rgba(198, 167, 93, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(255, 253, 247, 1) 0%, rgba(255, 243, 218, 1) 100%);
+}
+
+/* Button active/pressed state */
+.action-button-prompt:active {
+  transform: translateY(0px);
+  box-shadow: 
+    0 1px 3px rgba(198, 167, 93, 0.2),
+    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Focus state */
+.action-button-prompt:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(198, 167, 93, 0.3),
+    0 4px 12px rgba(198, 167, 93, 0.2);
+}
+
+/* Button text styling */
+.action-button-prompt span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Staggered entrance animation for button groups */
+.action-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.action-buttons-container .action-button-prompt {
+  animation: buttonSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.action-buttons-container .action-button-prompt:nth-child(1) { animation-delay: 0.05s; }
+.action-buttons-container .action-button-prompt:nth-child(2) { animation-delay: 0.1s; }
+.action-buttons-container .action-button-prompt:nth-child(3) { animation-delay: 0.15s; }
+.action-buttons-container .action-button-prompt:nth-child(4) { animation-delay: 0.2s; }
+.action-buttons-container .action-button-prompt:nth-child(5) { animation-delay: 0.25s; }
+.action-buttons-container .action-button-prompt:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes buttonSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Ripple effect on click */
+.action-button-prompt .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(198, 167, 93, 0.4);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Icon inside button (optional) */
+.action-button-prompt .button-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  transition: transform 0.3s ease;
+}
+
+.action-button-prompt:hover .button-icon {
+  transform: translateX(2px);
+}
+
+/* Pulse animation for suggested/highlighted buttons */
+.action-button-prompt.highlighted {
+  animation: subtlePulse 2s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(198, 167, 93, 0.3);
+  }
+}
+
+/* ========== ChatGPT-style Input Box ========== */
+
+.chatgpt-input-wrapper {
+  position: relative;
+  background: #FFFCFA;
+  border-radius: 999px;
+  margin-bottom: 0;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.chatgpt-input-wrapper:hover {
+  border-color: rgba(198, 167, 93, 0.55) !important;
+}
+
+.chatgpt-input-wrapper:focus-within {
+  border-color: rgba(198, 167, 93, 0.72) !important;
+  box-shadow: 0 0 0 3px rgba(198, 167, 93, 0.14), 0 6px 18px rgba(16, 24, 40, 0.08) !important;
+}
+
+.chatgpt-input-wrapper textarea {
+  font-family: inherit;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(198, 167, 93, 0.3) transparent;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.chatgpt-input-wrapper textarea:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.chatgpt-input-wrapper textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatgpt-input-wrapper textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatgpt-input-wrapper textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(198, 167, 93, 0.3);
+  border-radius: 3px;
+}
+
+.chatgpt-input-wrapper textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(198, 167, 93, 0.5);
+}
+
+.mof-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #E8E8E8;
+  color: #667085;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.mof-send-btn:hover:not(:disabled) {
+  background: #DEDEDE;
+}
+
+.mof-send-btn--active {
+  background: #C6A75D;
+  color: #ffffff;
+}
+
+.mof-send-btn--active:hover:not(:disabled) {
+  background: #B8985A;
+}
+
+.mof-send-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.voice-stop-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  background: #FEF3F2;
+  border: 1px solid rgba(198, 167, 93, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(217, 45, 32, 0.22);
+}
+
+.voice-stop-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #D92D20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: voiceStopPulse 1.4s ease-out infinite;
+}
+
+@keyframes voiceStopPulse {
+  0% { box-shadow: 0 0 0 0 rgba(217, 45, 32, 0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(217, 45, 32, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 45, 32, 0); }
+}
+
+.voice-stop-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #D92D20;
+  padding-inline-end: 4px;
+}
+
+.mof-suggestion-chip-arrow {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 !important;
+  border: 1px solid rgba(198, 167, 93, 0.45);
+  color: var(--suggestion-gold, #C6A75D);
+  background: transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.mof-suggestion-chip-arrow--featured,
+.action-button-prompt:hover .mof-suggestion-chip-arrow {
+  background: var(--suggestion-gold, #C6A75D);
+  border-color: var(--suggestion-gold, #C6A75D);
+  color: #ffffff;
+}
+
+.action-button-prompt.rounded-full::after {
+  border-radius: 999px;
+} 

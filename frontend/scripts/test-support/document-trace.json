@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {
+      "name": "File - Inspect and Classify",
+      "parameters": {
+        "jsCode": "const inputItem = $input.first();\nconst ctx = inputItem.json;\nconst allBinary = inputItem.binary ?? {};\n\nconst keys = Array.isArray(ctx.binaryKeys) && ctx.binaryKeys.length\n  ? ctx.binaryKeys\n  : Object.keys(allBinary);\n\nif (!keys.length) throw new Error('FILE_MISSING: No binary properties were received.');\n\nconst documentTypes = new Set(['pdf','docx','pptx']);\nconst imageTypes = new Set(['png','jpg','jpeg']);\nconst documentMimes = new Set([\n  'application/pdf',\n  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',\n  'application/vnd.openxmlformats-officedocument.presentationml.presentation'\n]);\nconst imageMimes = new Set(['image/png','image/jpeg','image/jpg']);\nconst csvMimes = new Set(['text/csv','application/csv','application/vnd.ms-excel']);\n\nconst sessionId = String(ctx.sessionId ?? 'unknown_session');\nconst collectionName = 'chat_' + sessionId.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 48);\n\nfunction createUuid() {\n  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {\n    const r = Math.floor(Math.random() * 16);\n    const v = c === 'x' ? r : (r & 0x3) | 0x8;\n    return v.toString(16);\n  });\n}\n\nconst requestId = String(ctx.requestId ?? ctx.correlationId ?? ctx.userMessageId ?? ctx.messageId ?? createUuid());\nconst replyToMessageId = ctx.userMessageId ?? ctx.messageId ?? ctx.replyToMessageId ?? null;\n\n// MOF_DOCUMENT_LIMIT_V1 (UAT1-FB-053): at most this many documents per chat.\n// Files over the limit take the rejected route and are named under the answer.\nconst MAX_DOCUMENTS_PER_CHAT = 5;\nconst alreadyInChat = Number(ctx.session_document_count);\nlet documentSlots = Number.isFinite(alreadyInChat) ? Math.max(0, MAX_DOCUMENTS_PER_CHAT - alreadyInChat) : Infinity;\n\nreturn keys.map((key, index) => {\n  const binaryFile = allBinary[key];\n  if (!binaryFile) throw new Error(`FILE_MISSING: Binary property \"${key}\" is unavailable.`);\n\n  const name = String(binaryFile.fileName ?? `upload_${index + 1}`).replace(/[\\r\\n]/g, '');\n  const extension = String(binaryFile.fileExtension ?? name.split('.').pop() ?? '')\n    .replace(/^\\./, '').toLowerCase();\n  const mime = String(binaryFile.mimeType ?? '').toLowerCase().split(';')[0].trim();\n\n  let route = 'unsupported';\n  if (documentTypes.has(extension) || documentMimes.has(mime)) route = 'document';\n  else if (imageTypes.has(extension) || imageMimes.has(mime)) route = 'image';\n  else if (extension === 'csv' || csvMimes.has(mime)) route = 'csv';\n  let limitExceeded = false;\n  if (route !== 'unsupported') {\n    if (documentSlots > 0) documentSlots -= 1;\n    else { route = 'unsupported'; limitExceeded = true; }\n  }\n\n  return {\n    json: {\n      ...ctx,\n      sessionId,\n      requestId,\n      correlationId: String(ctx.correlationId ?? requestId),\n      replyToMessageId,\n      hasFile: true,\n      uploadFileCount: keys.length,\n      binaryKey: key,\n      fileSequence: index + 1,\n      file: {\n        binaryKey: 'data',\n        originalBinaryKey: key,\n        name,\n        extension,\n        mimeType: mime,\n        size: binaryFile.fileSize ?? null,\n      },\n      route,\n      limitExceeded,\n      maxDocumentsPerChat: MAX_DOCUMENTS_PER_CHAT,\n      documentId: createUuid(),\n      collectionName,\n    },\n    binary: { data: binaryFile },\n    pairedItem: { item: 0 },\n  };\n});"
+      }
+    },
+    {
+      "name": "WebSocket Status - Reading Document",
+      "parameters": {
+        "method": "POST",
+        "url": "https://websocket-production-b9a1.up.railway.app/webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ (() => { const j = $json ?? {}; const sessionId = j.sessionId ?? j.body?.sessionId ?? j.sessionDetails?.sessionId ?? null; const requestId = j.requestId ?? j.correlationId ?? j.body?.requestId ?? null; const replyTo = j.replyToMessageId ?? j.replyTo ?? j.body?.replyToMessageId ?? null; const weaveChatid = j.metadata?.weaveChatid ?? j.weaveChatid ?? j.sessionDetails?.weaveChatid ?? null; return { output: '', requestId, replyTo, sessionDetails: { sessionId, weaveChatid, chatLock: true, chatLockMessage: \"Reading document...\", chatLockAnimation: \"reading\" } }; })() }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 2500
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "output": "Your presentation is ready.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "presentation.open",
+        "label": "Open presentation",
+        "actionButtonType": "view",
+        "action": "presentation.open",
+        "payload": {
+          "deckId": "44444444-4444-4444-8444-444444444444",
+          "presentation": {
+            "deckId": "44444444-4444-4444-8444-444444444444",
+            "revision": 1
+          }
+        }
+      },
+      {
+        "id": "presentation.pdf",
+        "label": "Download PDF",
+        "actionButtonType": "download",
+        "action": "presentation.export",
+        "payload": {
+          "deckId": "44444444-4444-4444-8444-444444444444",
+          "format": "pdf"
+        }
+      }
+    ]
+  }
+}

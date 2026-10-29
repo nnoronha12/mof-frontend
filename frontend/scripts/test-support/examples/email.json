@@ -1,0 +1,46 @@
+{
+  "output": "مسودة البريد الإلكتروني جاهزة.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "email.copy",
+        "label": "نسخ البريد الإلكتروني",
+        "actionButtonType": "copy",
+        "action": "email.copy",
+        "payload": {
+          "emailId": "email-102",
+          "emailDraft": {
+            "id": "email-102",
+            "subject": "طلب التقرير",
+            "body": "السادة الزملاء،\nيرجى إرسال التقرير.\nمع الشكر.",
+            "emailText": "الموضوع: طلب التقرير\n\nالسادة الزملاء،\nيرجى إرسال التقرير.\nمع الشكر."
+          }
+        }
+      },
+      {
+        "id": "email.download",
+        "label": "تنزيل البريد (.eml)",
+        "actionButtonType": "download",
+        "action": "email.download",
+        "mimetype": "message/rfc822",
+        "payload": {
+          "emailId": "email-102",
+          "file": {
+            "filename": "email-طلب التقرير.eml",
+            "mimetype": "message/rfc822",
+            "encoding": "base64",
+            "base64": "U3ViamVjdDogPT9VVEYtOD9CPzJMZlpoTmlvSU5pbjJZVFlxdG1DMkxIWml0aXg/PQ0KTUlNRS1WZXJzaW9uOiAxLjANCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsgY2hhcnNldD1VVEYtOA0KQ29udGVudC1UcmFuc2Zlci1FbmNvZGluZzogYmFzZTY0DQpYLVVuc2VudDogMQ0KDQoyS2ZaaE5pejJLZllyOWlwSU5pbjJZVFlzdG1GMllUWXA5aWgySXdOQ3RtSzJMSFlyTm1KSU5pbDJMSFlzOWluMllRZzJLZlpoTmlxDQoyWUxZc2RtSzJMRXVEUXJaaGRpNUlOaW4yWVRZdE5tRDJMRXUNCg=="
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+dist2/
+dist-slides/
+.netlify/
+coverage/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+raghav-internal/
+__pycache__/

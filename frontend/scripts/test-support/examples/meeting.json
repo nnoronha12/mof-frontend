@@ -1,0 +1,31 @@
+{
+  "output": "Your meeting summary is ready to download.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "meeting.report",
+        "label": "Download meeting summary",
+        "actionButtonType": "download",
+        "action": "meeting.download",
+        "payload": {
+          "artifactId": "33333333-3333-4333-8333-333333333333",
+          "meeting": {
+            "artifactId": "33333333-3333-4333-8333-333333333333",
+            "filename": "meeting-summary.pdf",
+            "preview": false
+          }
+        },
+        "file_id": "33333333-3333-4333-8333-333333333333",
+        "mimetype": "application/pdf"
+      }
+    ]
+  }
+}

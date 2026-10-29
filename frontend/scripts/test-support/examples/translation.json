@@ -1,0 +1,58 @@
+{
+  "output": "Your translated document is ready.",
+  "sessionDetails": {
+    "messageId": "102",
+    "sessionId": "22222222-2222-4222-8222-222222222222",
+    "userMessageId": "101",
+    "aiMessageId": "102",
+    "weaveChatid": 42,
+    "chatLock": false
+  },
+  "actionButtons": {
+    "buttons": [
+      {
+        "id": "translation.open",
+        "label": "Open translation",
+        "actionButtonType": "view",
+        "action": "translation.open",
+        "payload": {
+          "jobId": "55555555-5555-4555-8555-555555555555",
+          "translation": {
+            "jobId": "55555555-5555-4555-8555-555555555555",
+            "status": "done",
+            "sourceLang": "ar",
+            "targetLang": "en",
+            "pages": 2,
+            "needsReview": [],
+            "viewKey": "synthetic-example-only",
+            "links": {
+              "view": "https://uat-esolutions.solutionsplus.ae/ai/translate/document?jobId=55555555-5555-4555-8555-555555555555&k=synthetic-example-only",
+              "html": "https://uat-esolutions.solutionsplus.ae/ai/translate/document?jobId=55555555-5555-4555-8555-555555555555&k=synthetic-example-only&download=1",
+              "pdf": "https://uat-esolutions.solutionsplus.ae/ai/translate/export?jobId=55555555-5555-4555-8555-555555555555&k=synthetic-example-only"
+            }
+          }
+        }
+      },
+      {
+        "id": "translation.pdf",
+        "label": "Download translated PDF",
+        "actionButtonType": "download",
+        "action": "translation.download",
+        "payload": {
+          "jobId": "55555555-5555-4555-8555-555555555555",
+          "format": "pdf"
+        }
+      },
+      {
+        "id": "translation.html",
+        "label": "Download HTML",
+        "actionButtonType": "download",
+        "action": "translation.download",
+        "payload": {
+          "jobId": "55555555-5555-4555-8555-555555555555",
+          "format": "html"
+        }
+      }
+    ]
+  }
+}
