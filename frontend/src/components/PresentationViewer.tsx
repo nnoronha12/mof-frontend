@@ -21,6 +21,7 @@ import {
 } from './presentationDeck';
 import { renderPresentationSpec, shufflePresentationDesign } from './presentationRenderer';
 import { resolvePresentationAssetUrls, sanitizePresentationHtml } from './presentationPreview';
+import { ensureUtf8Charset, HTML_FILE_TYPE } from '../utils/htmlFile';
 import {
   exportPresentationDeck,
   getPresentationDeck,
@@ -712,10 +713,10 @@ export const PresentationViewer: React.FC<PresentationViewerProps> = ({
     }
   };
 
-  const safeDeckHtml = () => sanitizePresentationHtml(resolvePresentationAssetUrls(renderedDraftHtml));
-  const downloadHtml = () => downloadBlob(new Blob([safeDeckHtml()], { type: 'text/html' }), 'mof-presentation.html');
+  const safeDeckHtml = () => ensureUtf8Charset(sanitizePresentationHtml(resolvePresentationAssetUrls(renderedDraftHtml)));
+  const downloadHtml = () => downloadBlob(new Blob([safeDeckHtml()], { type: HTML_FILE_TYPE }), 'mof-presentation.html');
   const openDeck = () => {
-    const url = URL.createObjectURL(new Blob([safeDeckHtml()], { type: 'text/html' }));
+    const url = URL.createObjectURL(new Blob([safeDeckHtml()], { type: HTML_FILE_TYPE }));
     window.open(url, '_blank', 'noopener,noreferrer');
     window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
   };
