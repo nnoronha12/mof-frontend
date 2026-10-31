@@ -131,19 +131,9 @@
   align-items: center;
 }
 
-.login-input-icon {
-  position: absolute;
-  left: 1rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #94a3b8;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .login-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  padding: 0.75rem 1rem;
   font-size: 0.9375rem;
   color: #1e293b;
   background: #f8fafc;
