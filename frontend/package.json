@@ -10,7 +10,7 @@
     "start": "webpack serve --config webpack.config.cjs --mode development --port 3000",
     "typecheck": "tsc --noEmit",
     "build:web": "npm run typecheck && webpack --config webpack.config.cjs --mode production --env app && node scripts/finalize-web-build.cjs",
-    "test": "node scripts/test-mof-config.cjs && node scripts/test-translation-pdf.cjs && node scripts/test-chat-language.cjs && node scripts/test-host-messages.cjs && node scripts/test-answer-copy.cjs && node scripts/test-chat-request-trace.cjs && node scripts/test-saved-prompts.cjs && node scripts/test-email-presentation.cjs && node scripts/test-support/test-frontend-actions.cjs",
+    "test": "node scripts/test-mof-config.cjs && node scripts/test-translation-pdf.cjs && node scripts/test-presentation-assets.cjs && node scripts/test-chat-language.cjs && node scripts/test-host-messages.cjs && node scripts/test-answer-copy.cjs && node scripts/test-chat-request-trace.cjs && node scripts/test-saved-prompts.cjs && node scripts/test-email-presentation.cjs && node scripts/test-support/test-frontend-actions.cjs",
     "verify:web": "npm test && npm run build:web && node scripts/check-release-artifact.cjs && node scripts/test-web-startup.cjs",
     "slides:dev": "vite --config config/vite.slides.config.mts",
     "slides:build": "vite build --config config/vite.slides.config.mts",

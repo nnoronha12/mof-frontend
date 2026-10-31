@@ -11,6 +11,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { TranslationResult, translationPageImageUrl } from '../services/translationWorkflow';
+import { ensureUtf8Charset, HTML_FILE_TYPE } from '../utils/htmlFile';
 
 interface TranslationViewerProps {
   result: TranslationResult;
@@ -169,7 +170,7 @@ export const TranslationViewer: React.FC<TranslationViewerProps> = ({ result, is
   const stem = `translation-${(result.targetLang || '').toUpperCase() || 'doc'}`;
   const openInTab = () => {
     if (!safeHtml) return;
-    const url = URL.createObjectURL(new Blob([safeHtml], { type: 'text/html' }));
+    const url = URL.createObjectURL(new Blob([ensureUtf8Charset(safeHtml)], { type: HTML_FILE_TYPE }));
     window.open(url, '_blank', 'noopener,noreferrer');
     window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
   };

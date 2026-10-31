@@ -12,13 +12,12 @@ export const sanitizePresentationHtml = (html: string): string => {
   });
 };
 
-export const resolvePresentationAssetUrls = (html: string): string => {
-  const assetBase = getPptAssetBaseUrl();
-  return html
-    .replaceAll('/webhook/ppt/asset?path=', '/ai/ppt/asset?path=')
-    .replace(/https?:\/\/(?:127\.0\.0\.1|localhost|10\.\d+\.\d+\.\d+)(?::\d+)?\/ai\/ppt\/asset\?path=/gi, assetBase)
-    .replace(/\{\{baseURL\}\}\/ai\/ppt\/asset\?path=/gi, assetBase);
-};
+// A deck stores the asset address of the environment that generated it (an n8n host and port,
+// a gateway's /ai prefix, or the {{baseURL}} placeholder). Every form points at this portal's own
+// asset route, so images load wherever the deck was made.
+const ASSET_URL = /(?:\{\{baseURL\}\}|https?:\/\/[^\s"'()<>/\\]+)?\/(?:webhook|ai)\/ppt\/asset\?path=/gi;
+
+export const resolvePresentationAssetUrls = (html: string): string => html.replace(ASSET_URL, getPptAssetBaseUrl());
 
 // Shows only the first slide at its native 1920×1080 size, for a scaled thumbnail.
 const COVER_CANVAS_STYLE = `
